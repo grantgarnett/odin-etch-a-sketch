@@ -7,15 +7,22 @@ document.addEventListener("mousedown", (event) => {
  });
 document.addEventListener("mouseup", () => isMouseDown = false);
 
-function enablePen(square) {
-    square.addEventListener("mouseenter", (event) => {
-        if (isMouseDown === true) {
-            event.target.classList.add("black");
-        }
-    } );
-    square.addEventListener(
-    "mousedown", (event) => event.target.classList.add("black"));
+function enablePenDrag(event) {
+    if(isMouseDown === true) {
+        event.target.classList.add("black");
+    }
 }
+
+function enablePenClick(event) {
+    event.target.classList.add("black")
+}
+
+function enablePen(square) {
+    square.addEventListener("mouseenter", enablePenDrag);
+    square.addEventListener("mousedown", enablePenClick);
+}
+
+
 
 function generateSquare(column) {
     const square = document.createElement("div");
