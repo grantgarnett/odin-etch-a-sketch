@@ -22,7 +22,10 @@ function enablePen(square) {
     square.addEventListener("mousedown", enablePenClick);
 }
 
-
+function disablePen(square) {
+    square.removeEventListener("mouseenter", enablePenDrag);
+    square.removeEventListener("mousedown", enablePenClick);
+}
 
 function generateSquare(column) {
     const square = document.createElement("div");
