@@ -18,6 +18,7 @@ function generateColumn(columnSize) {
 }
 
 function generateDrawingBoard(squaresAlongSide) {
+    // if input is a natural number
     if(+squaresAlongSide && 
         +squaresAlongSide === Math.floor(Math.abs(+squaresAlongSide))) {
         for(let i = 0; i < squaresAlongSide; i++) { 
