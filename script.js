@@ -48,15 +48,40 @@ function disableEraser(square) {
     square.removeEventListener("mousedown", enableEraserClick);
 }
 
+function makeRandomColor() {
+    return `rgb(${Math.floor(Math.random() * 255)}, \
+    ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+}
+
+function enableRandomDrag(event) {
+    if(isMouseDown === true) {
+        event.target.style.backgroundColor = makeRandomColor();
+    }
+}
+
+function enableRandomClick(event) {
+    event.target.style.backgroundColor = makeRandomColor();
+}
+
+function enableRandomPen(square) {
+    disablePen(square);
+    disableEraser(square);
+    square.addEventListener("mouseenter", enableRandomDrag);
+    square.addEventListener("mousedown", enableRandomClick);
+}
+
+function disableRandomPen(square) {
+    square.removeEventListener("mouseenter", enableRandomDrag);
+    square.removeEventListener("mousedown", enableRandomClick);
+}
+
 function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
     enablePen(square);
 
-    // two lines below added to show functionality of commit,
-    // in removing enablePen above and 'erasing' black class
-    enableEraser(square);
-    square.classList.add("black");
+    // line below added to show functionality
+    enableRandomPen(square);
 
     column.appendChild(square);
 }
