@@ -1,4 +1,11 @@
-etchContainer = document.querySelector("#etch-container");
+const etchContainer = document.querySelector("#etch-container");
+let isMouseDown = false;
+
+document.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+    isMouseDown = true;
+ });
+document.addEventListener("mouseup", () => isMouseDown = false);
 
 function generateSquare(column) {
     const square = document.createElement("div");
@@ -27,4 +34,4 @@ function generateDrawingBoard(squaresAlongSide) {
     }
 }
 
-generateDrawingBoard(5);
+generateDrawingBoard(64);
