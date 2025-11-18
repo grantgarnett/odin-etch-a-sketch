@@ -27,10 +27,37 @@ function disablePen(square) {
     square.removeEventListener("mousedown", enablePenClick);
 }
 
+function enableEraserDrag(event) {
+    if(isMouseDown === true) {
+        event.target.classList.remove("black");
+    }
+}
+
+function enableEraserClick(event) {
+    event.target.classList.remove("black")
+}
+
+function enableEraser(square) {
+    disablePen(square);
+    square.addEventListener("mouseenter", enableEraserDrag);
+    square.addEventListener("mousedown", enableEraserClick);
+}
+
+function disableEraser(square) {
+    square.removeEventListener("mouseenter", enableEraserDrag);
+    square.removeEventListener("mousedown", enableEraserClick);
+}
+
 function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
     enablePen(square);
+
+    // two lines below added to show functionality of commit,
+    // in removing enablePen above and 'erasing' black class
+    enableEraser(square);
+    square.classList.add("black");
+
     column.appendChild(square);
 }
 
