@@ -36,7 +36,7 @@ header {
     height: 70%;
     width: 50%;
     display: flex;
-    border: solid black 1px;
+    border: solid black 0.5px;
 }
 
 .column {
@@ -47,7 +47,7 @@ header {
 
 .square {
     flex: auto;
-    border: solid black 1px;
+    border: solid black 0.5px;
 }
 
 #footer {
