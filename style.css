@@ -34,14 +34,13 @@ header {
 
 #etch-container {
     height: 70%;
-    width: 70%;
+    width: 50%;
     display: flex;
     border: solid black 1px;
 }
 
 .column {
     flex: auto;
-
     display: flex;
     flex-direction: column;
 }
