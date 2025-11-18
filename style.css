@@ -35,6 +35,20 @@ header {
 #etch-container {
     height: 70%;
     width: 70%;
+    display: flex;
+    border: solid black 1px;
+}
+
+.column {
+    flex: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.square {
+    flex: auto;
+    border: solid black 1px;
 }
 
 #footer {

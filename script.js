@@ -26,3 +26,5 @@ function generateDrawingBoard(squaresAlongSide) {
         }
     }
 }
+
+generateDrawingBoard(5);
