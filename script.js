@@ -18,6 +18,8 @@ function enablePenClick(event) {
 }
 
 function enablePen(square) {
+    disableEraser(square);
+    disableRandomPen(square);
     square.addEventListener("mouseenter", enablePenDrag);
     square.addEventListener("mousedown", enablePenClick);
 }
@@ -39,6 +41,7 @@ function enableEraserClick(event) {
 
 function enableEraser(square) {
     disablePen(square);
+    disableRandomPen(square);
     square.addEventListener("mouseenter", enableEraserDrag);
     square.addEventListener("mousedown", enableEraserClick);
 }
@@ -79,10 +82,6 @@ function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
     enablePen(square);
-
-    // line below added to show functionality
-    enableRandomPen(square);
-
     column.appendChild(square);
 }
 
