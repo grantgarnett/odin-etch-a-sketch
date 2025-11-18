@@ -7,9 +7,20 @@ document.addEventListener("mousedown", (event) => {
  });
 document.addEventListener("mouseup", () => isMouseDown = false);
 
+function enablePen(square) {
+    square.addEventListener("mouseenter", (event) => {
+        if (isMouseDown === true) {
+            event.target.classList.add("black");
+        }
+    } );
+    square.addEventListener(
+    "mousedown", (event) => event.target.classList.add("black"));
+}
+
 function generateSquare(column) {
     const square = document.createElement("div");
-    square.classList.toggle("square");
+    square.classList.add("square");
+    enablePen(square);
     column.appendChild(square);
 }
 
