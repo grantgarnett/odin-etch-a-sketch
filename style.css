@@ -13,6 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color:rgb(237, 194, 74);
 }
 
 header {
@@ -25,6 +26,8 @@ header {
 
 #title {
     align-self: center;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(88, 66, 9)
 }
 
 #button-container {
@@ -37,6 +40,7 @@ header {
     width: 50%;
     display: flex;
     border: solid black 0.5px;
+    background-color: white;
 }
 
 .column {
