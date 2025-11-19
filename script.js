@@ -105,17 +105,35 @@ function enableOpacityClick(event) {
     }
 }
 
-function enableOpacity(square) {
-    isOpacityEnabled = true;
+function enableSquareOpacity(square) {
     square.addEventListener("mouseenter", enableOpacityDrag);
     square.addEventListener("mousedown", enableOpacityClick);
     square.style.opacity = "0";
 }
 
-function disableOpacity(square) {
-    isOpacityEnabled = false;
+function enableOpacity() {
+    isOpacityEnabled = true;
+    squares.forEach(enableSquareOpacity);
+}
+
+function disableSquareOpacity(square) {
     square.removeEventListener("mouseenter", enableOpacityDrag);
     square.removeEventListener("mousedown", enableOpacityClick);
+    square.style.opacity = "1";
+}
+
+function disableOpacity() {
+    isOpacityEnabled = false;
+    squares.forEach(disableSquareOpacity);
+}
+
+function toggleOpacity() {
+    if (isOpacityEnabled === false) {
+        enableOpacity();
+    }
+    else {
+        disableOpacity();
+    }
 }
 
 function generateSquare(column) {
@@ -159,3 +177,4 @@ const squares = document.querySelectorAll(".square");
 penButton.addEventListener("click", enablePen);
 eraserButton.addEventListener("click", enableEraser);
 randomButton.addEventListener("click", enableRandomPen);
+opacityButton.addEventListener("click", toggleOpacity);
