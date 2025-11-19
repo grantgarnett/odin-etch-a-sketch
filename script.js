@@ -1,5 +1,6 @@
 const etchContainer = document.querySelector("#etch-container");
 let isMouseDown = false;
+let isOpacityEnabled = false;
 
 document.addEventListener("mousedown", (event) => {
     event.preventDefault();
@@ -78,10 +79,41 @@ function disableRandomPen(square) {
     square.removeEventListener("mousedown", enableRandomClick);
 }
 
+function enableOpacityDrag(event) {
+    if((isMouseDown === true) && (event.target.style.opacity < 1)) {;
+        const opacity = +event.target.style.opacity + 0.1;
+        event.target.style.opacity = `${opacity}`;
+    }
+}
+
+function enableOpacityClick(event) {
+    if(event.target.style.opacity < 1) {
+        const opacity = +event.target.style.opacity + 0.1;
+        event.target.style.opacity = `${opacity}`;
+    }
+}
+
+function enableOpacity(square) {
+    isOpacityEnabled = true;
+    square.addEventListener("mouseenter", enableOpacityDrag);
+    square.addEventListener("mousedown", enableOpacityClick);
+}
+
+function disableOpacity(square) {
+    isOpacityEnabled = false;
+    square.removeEventListener("mouseenter", enableOpacityDrag);
+    square.removeEventListener("mousedown", enableOpacityClick);
+}
+
 function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
     enablePen(square);
+    square.style.opacity = "0";
+
+    // line below added to show functionality of commit
+    enableOpacity(square);
+
     column.appendChild(square);
 }
 
