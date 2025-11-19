@@ -128,6 +128,7 @@ function enableSquareOpacity(square) {
     square.addEventListener("mouseenter", enableOpacityDrag);
     square.addEventListener("mousedown", enableOpacityClick);
     square.style.backgroundColor = "white";
+    square.style.border = "none";
     square.style.opacity = "0";
 }
 
@@ -140,6 +141,7 @@ function disableSquareOpacity(square) {
     square.removeEventListener("mouseenter", enableOpacityDrag);
     square.removeEventListener("mousedown", enableOpacityClick);
     square.style.backgroundColor = "white";
+    square.style.border = "solid black 0.5px";
     square.style.opacity = "1";
 }
 
