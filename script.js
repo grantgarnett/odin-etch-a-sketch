@@ -163,16 +163,17 @@ function generateColumn(columnSize) {
 }
 
 function generateDrawingBoard(squaresAlongSide) {
-    columns.forEach((column) => column.remove());
-    // if input is a natural number
-    if(+squaresAlongSide && 
-        +squaresAlongSide === Math.floor(Math.abs(+squaresAlongSide))) {
+    // if input is a natural number between 1 and 64
+    if((+squaresAlongSide)
+        && (+squaresAlongSide === Math.floor(Math.abs(+squaresAlongSide)))
+        && (+squaresAlongSide < 65)) {
+        columns.forEach((column) => column.remove());
         for(let i = 0; i < squaresAlongSide; i++) { 
             generateColumn(squaresAlongSide);
         }
+        squares = document.querySelectorAll(".square");
+        columns = document.querySelectorAll(".column");
     }
-    squares = document.querySelectorAll(".square");
-    columns = document.querySelectorAll(".column");
 }
 
 function makeNewGrid() {
