@@ -11,11 +11,21 @@ const resizeButton = document.querySelector("#resize-button");
 let squares = document.querySelectorAll(".square");
 let columns = document.querySelectorAll(".column");
 
+let buttons = document.querySelectorAll("button");
+buttons.forEach(buttonColorWhenClicked)
+
 document.addEventListener("mousedown", (event) => {
     event.preventDefault();
     isMouseDown = true;
  });
 document.addEventListener("mouseup", () => isMouseDown = false);
+
+function buttonColorWhenClicked(button) {
+    button.addEventListener("mousedown", (event) => 
+        event.target.style.opacity = 0.8);
+    button.addEventListener("mouseup", (event) => 
+        event.target.style.opacity = 1);
+}
 
 function enablePenDrag(event) {
     if(isMouseDown === true) {
