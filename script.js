@@ -2,6 +2,15 @@ const etchContainer = document.querySelector("#etch-container");
 let isMouseDown = false;
 let isOpacityEnabled = false;
 
+const penButton = document.querySelector("#pen-button");
+const eraserButton = document.querySelector("#eraser-button");
+const randomButton = document.querySelector("#random-button");
+const opacityButton = document.querySelector("#opacity-button");
+const resizeButton = document.querySelector("#resize-button");
+
+let squares = document.querySelectorAll(".square");
+let columns = document.querySelectorAll(".column");
+
 document.addEventListener("mousedown", (event) => {
     event.preventDefault();
     isMouseDown = true;
@@ -139,7 +148,6 @@ function toggleOpacity() {
 function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
-    //enableSquarePen(square);
     column.appendChild(square);
 }
 
@@ -155,6 +163,7 @@ function generateColumn(columnSize) {
 }
 
 function generateDrawingBoard(squaresAlongSide) {
+    columns.forEach((column) => column.remove());
     // if input is a natural number
     if(+squaresAlongSide && 
         +squaresAlongSide === Math.floor(Math.abs(+squaresAlongSide))) {
@@ -162,19 +171,20 @@ function generateDrawingBoard(squaresAlongSide) {
             generateColumn(squaresAlongSide);
         }
     }
+    squares = document.querySelectorAll(".square");
+    columns = document.querySelectorAll(".column");
+}
+
+function makeNewGrid() {
+    const input = +prompt(`Please input a whole number between \
+1 and 64. This will create an n x n grid for you to draw in!`);
+    generateDrawingBoard(input);
 }
 
 generateDrawingBoard(16);
-
-const penButton = document.querySelector("#pen-button");
-const eraserButton = document.querySelector("#eraser-button");
-const randomButton = document.querySelector("#random-button");
-const opacityButton = document.querySelector("#opacity-button");
-const resizeButton = document.querySelector("#resize-button");
-
-const squares = document.querySelectorAll(".square");
 
 penButton.addEventListener("click", enablePen);
 eraserButton.addEventListener("click", enableEraser);
 randomButton.addEventListener("click", enableRandomPen);
 opacityButton.addEventListener("click", toggleOpacity);
+resizeButton.addEventListener("click", makeNewGrid);
