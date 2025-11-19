@@ -97,6 +97,7 @@ function enableOpacity(square) {
     isOpacityEnabled = true;
     square.addEventListener("mouseenter", enableOpacityDrag);
     square.addEventListener("mousedown", enableOpacityClick);
+    square.style.opacity = "0";
 }
 
 function disableOpacity(square) {
@@ -109,11 +110,6 @@ function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
     enablePen(square);
-    square.style.opacity = "0";
-
-    // line below added to show functionality of commit
-    enableOpacity(square);
-
     column.appendChild(square);
 }
 
