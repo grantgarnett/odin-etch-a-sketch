@@ -134,4 +134,11 @@ function generateDrawingBoard(squaresAlongSide) {
     }
 }
 
-generateDrawingBoard(64);
+const penButton = document.querySelector("#pen-button");
+const eraserButton = document.querySelector("#eraser-button");
+const randomButton = document.querySelector("#random-button");
+const opacityButton = document.querySelector("#opacity-button");
+const resizeButton = document.querySelector("#resize-button");
+
+const squares = document.querySelectorAll(".square");
+
