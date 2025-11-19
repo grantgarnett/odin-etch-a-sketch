@@ -10,44 +10,52 @@ document.addEventListener("mouseup", () => isMouseDown = false);
 
 function enablePenDrag(event) {
     if(isMouseDown === true) {
-        event.target.classList.add("black");
+        event.target.style.backgroundColor = "black";
     }
 }
 
 function enablePenClick(event) {
-    event.target.classList.add("black")
+    event.target.style.backgroundColor = "black";
 }
 
-function enablePen(square) {
-    disableEraser(square);
-    disableRandomPen(square);
+function enableSquarePen(square) {
+    disableSquareEraser(square);
+    disableSquareRandomPen(square);
     square.addEventListener("mouseenter", enablePenDrag);
     square.addEventListener("mousedown", enablePenClick);
 }
 
-function disablePen(square) {
+function enablePen() {
+    squares.forEach(enableSquarePen);
+}
+
+function disableSquarePen(square) {
     square.removeEventListener("mouseenter", enablePenDrag);
     square.removeEventListener("mousedown", enablePenClick);
 }
 
 function enableEraserDrag(event) {
     if(isMouseDown === true) {
-        event.target.classList.remove("black");
+        event.target.style.backgroundColor = "white";
     }
 }
 
 function enableEraserClick(event) {
-    event.target.classList.remove("black")
+    event.target.style.backgroundColor = "white";
 }
 
-function enableEraser(square) {
-    disablePen(square);
-    disableRandomPen(square);
+function enableSquareEraser(square) {
+    disableSquarePen(square);
+    disableSquareRandomPen(square);
     square.addEventListener("mouseenter", enableEraserDrag);
     square.addEventListener("mousedown", enableEraserClick);
 }
 
-function disableEraser(square) {
+function enableEraser() {
+    squares.forEach(enableSquareEraser);
+}
+
+function disableSquareEraser(square) {
     square.removeEventListener("mouseenter", enableEraserDrag);
     square.removeEventListener("mousedown", enableEraserClick);
 }
@@ -67,14 +75,18 @@ function enableRandomClick(event) {
     event.target.style.backgroundColor = makeRandomColor();
 }
 
-function enableRandomPen(square) {
-    disablePen(square);
-    disableEraser(square);
+function enableSquareRandomPen(square) {
+    disableSquarePen(square);
+    disableSquareEraser(square);
     square.addEventListener("mouseenter", enableRandomDrag);
     square.addEventListener("mousedown", enableRandomClick);
 }
 
-function disableRandomPen(square) {
+function enableRandomPen() {
+    squares.forEach(enableSquareRandomPen);
+}
+
+function disableSquareRandomPen(square) {
     square.removeEventListener("mouseenter", enableRandomDrag);
     square.removeEventListener("mousedown", enableRandomClick);
 }
@@ -109,7 +121,7 @@ function disableOpacity(square) {
 function generateSquare(column) {
     const square = document.createElement("div");
     square.classList.add("square");
-    enablePen(square);
+    //enableSquarePen(square);
     column.appendChild(square);
 }
 
@@ -134,6 +146,8 @@ function generateDrawingBoard(squaresAlongSide) {
     }
 }
 
+generateDrawingBoard(16);
+
 const penButton = document.querySelector("#pen-button");
 const eraserButton = document.querySelector("#eraser-button");
 const randomButton = document.querySelector("#random-button");
@@ -142,3 +156,6 @@ const resizeButton = document.querySelector("#resize-button");
 
 const squares = document.querySelectorAll(".square");
 
+penButton.addEventListener("click", enablePen);
+eraserButton.addEventListener("click", enableEraser);
+randomButton.addEventListener("click", enableRandomPen);
