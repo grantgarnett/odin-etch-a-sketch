@@ -56,11 +56,17 @@ function disableSquarePen(square) {
 function enableEraserDrag(event) {
     if(isMouseDown === true) {
         event.target.style.backgroundColor = "white";
+        if(isOpacityEnabled === true) {
+            event.target.style.opacity = "0";
+        }
     }
 }
 
 function enableEraserClick(event) {
     event.target.style.backgroundColor = "white";
+    if(isOpacityEnabled === true) {
+        event.target.style.opacity = "0";
+    }
 }
 
 function enableSquareEraser(square) {
